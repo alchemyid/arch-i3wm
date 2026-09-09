@@ -1,0 +1,73 @@
+general {
+    colors = true
+    interval = 5
+    color_good = "#b8bb26"
+    color_degraded = "#fabd2f"
+    color_bad = "#fb4934"
+}
+
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+order += "disk /"
+order += "disk /home/me/Disk"
+order += "battery 0"
+order += "ethernet tailscale0"
+order += "tztime local"
+
+wireless _first_ {
+    format_up   = " W: %signal %essid "
+    format_down = " W: down "
+}
+
+ethernet _first_ {
+    format_up   = " E: %ip (%speed) "
+    format_down = " E: down "
+}
+
+cpu_usage {
+    format             = " CPU: %usage "
+    max_threshold      = 75
+    degraded_threshold = 50
+}
+
+cpu_temperature 0 {
+    format        = " TEMP: %degrees°C "
+    path          = "/sys/class/thermal/thermal_zone1/temp"
+    max_threshold = 75
+}
+
+memory {
+    format            = " MEM: %used/%total "
+    threshold_degraded = "1G"
+    format_degraded   = " MEM LOW: %free "
+}
+
+disk "/" {
+    format = " / %avail "
+}
+
+disk "/home/me/Disk" {
+    format = " Disk: %avail "
+}
+
+battery 0 {
+    format       = " BAT: %status %percentage %remaining "
+    format_down  = " No battery "
+    status_chr   = "⚡"
+    status_bat   = ""
+    status_full  = "☻"
+    path         = "/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = 30
+}
+
+ethernet tailscale0 {
+    format_up   = " TS: UP (%ip) "
+    format_down = " TS: DOWN "
+}
+
+tztime local {
+    format = " %Y-%m-%d %H:%M "
+}
