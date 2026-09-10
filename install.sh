@@ -54,6 +54,8 @@ PKGS_BASE=(
     git
     curl
     wget
+    python
+    psmisc
 )
 
 PKGS_XORG=(
@@ -71,9 +73,15 @@ PKGS_I3WM=(
     dmenu
 )
 
+PKGS_FONTS=(
+    ttf-jetbrains-mono-nerd
+    noto-fonts
+    noto-fonts-emoji
+    ttf-liberation
+)
+
 PKGS_TERMINAL_SHELL=(
     xterm
-    ttf-jetbrains-mono-nerd
     zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -103,13 +111,19 @@ PKGS_UTILITIES=(
     maim
     xclip
     libnotify
+    dunst
     picom
     redshift
 )
 
-PKGS_DEV_BROWSERS=(
+PKGS_DEV_LANGUAGES=(
     nodejs
     npm
+    go
+    rust
+)
+
+PKGS_BROWSERS=(
     firefox
 )
 
@@ -118,10 +132,12 @@ ALL_OFFICIAL_PKGS=(
     "${PKGS_BASE[@]}"
     "${PKGS_XORG[@]}"
     "${PKGS_I3WM[@]}"
+    "${PKGS_FONTS[@]}"
     "${PKGS_TERMINAL_SHELL[@]}"
     "${PKGS_HARDWARE_AUDIO_NET[@]}"
     "${PKGS_UTILITIES[@]}"
-    "${PKGS_DEV_BROWSERS[@]}"
+    "${PKGS_DEV_LANGUAGES[@]}"
+    "${PKGS_BROWSERS[@]}"
 )
 
 # ------------------------------------------------------------------------------
@@ -327,8 +343,10 @@ if [[ -n "$DISPLAY" ]]; then
     xrdb -merge "$HOME/.Xresources" 2>/dev/null || true
 fi
 
-# Placeholder wallpaper jika belum ada gambar
-if [[ ! -f "$HOME/Pictures/wallpaper.jpg" ]]; then
+# Salin wallpaper default repositori ke ~/Pictures/wallpaper.jpg
+if [[ -f "$SCRIPT_DIR/wallpaper.jpg" ]]; then
+    deploy_file "$SCRIPT_DIR/wallpaper.jpg" "$HOME/Pictures/wallpaper.jpg"
+elif [[ ! -f "$HOME/Pictures/wallpaper.jpg" ]]; then
     log_warn "Wallpaper belum ditemukan di $HOME/Pictures/wallpaper.jpg"
     log_info "Membuat placeholder wallpaper dengan ImageMagick..."
     convert -size 1920x1080 xc:"#282828" \

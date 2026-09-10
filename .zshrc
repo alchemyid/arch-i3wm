@@ -41,3 +41,7 @@ alias startx='startx > /dev/null 2>&1'
 # Editor
 export EDITOR=vim
 export VISUAL=vim
+
+# Paths (Cargo / Rust & Go)
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/go/bin" ]] && export PATH="$HOME/go/bin:$PATH"

@@ -88,10 +88,11 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **X11 / Display** | `xorg-server`, `xorg-xinit`, `xorg-xrdb`, `xorg-xset` | Official | Display server dasar, `startx`, parser `.Xresources`, pengatur screen timeout idle |
 | **Touchpad / Input** | `xf86-input-libinput`, `xorg-xinput` | Official | Driver trackpad libinput (Tap-to-click, gestures, natural scrolling) |
 | **Window Manager** | `i3-wm`, `i3status`, `dmenu` | Official | Tiling window manager, generator status bar, launcher menu aplikasi |
-| **Terminal & Font** | `xterm`, `ttf-jetbrains-mono-nerd` | Official | Terminal emulator & font Nerd Font vektor untuk teks dan ikon status bar |
-| **Shell & CLI** | `zsh`, `zsh-autosuggestions`, `zsh-syntax-highlighting` | Official | Interactive shell dengan auto-complete dan syntax highlighting |
+| **Base / Core Tools** | `base-devel`, `git`, `curl`, `wget`, `psmisc` | Official | Paket esensial sistem, kompilasi software, dan utilitas proses (`killall`) |
+| **Typography & Fonts**| `ttf-jetbrains-mono-nerd`, `noto-fonts`, `noto-fonts-emoji`, `ttf-liberation` | Official | JetBrainsMono Nerd Font (ikon/status bar), fallback Unicode, emoji warna, & metrik standar |
+| **Terminal & Shell** | `xterm`, `zsh`, `zsh-autosuggestions`, `zsh-syntax-highlighting` | Official | Terminal emulator & interactive shell dengan rekomendasi perintah dan syntax highlight |
 | **Editor & Git** | `neovim`, `git`, `openssh` | Official | Editor default (`vim` -> `nvim`), version control, dan remote terminal |
-| **Development** | `nodejs`, `npm` | Official | Runtime JavaScript & Node package manager |
+| **Programming & Dev** | `nodejs`, `npm`, `go`, `rust` | Official | Runtime Node.js & npm, compiler Go (Golang), serta toolchain Rust & Cargo |
 | **Web Browser** | `firefox` | Official | Web browser open-source default |
 | **Web Browser (AUR)** | `google-chrome` | **AUR** | Web browser Google Chrome Stable |
 | **Wallpaper & Desktop** | `feh`, `dex`, `picom` | Official | Background manager, autostart XDG, dan compositor pencegah screen tearing |
@@ -101,7 +102,8 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **Network & VPN** | `networkmanager`, `network-manager-applet`, `tailscale` | Official | Pengelola WiFi/LAN, ikon tray sistem, dan mesh VPN Tailscale |
 | **Hardware Control** | `bluez`, `bluez-utils`, `brightnessctl` | Official | Bluetooth daemon & CLI controller, pengatur kecerahan lampu layar laptop |
 | **Kenyamanan Mata** | `redshift` | Official | Pengatur temperatur warna / filter cahaya biru (5500K) |
-| **Screenshot & Clip** | `maim`, `xclip`, `libnotify` | Official | Utilitas screen capture, integrasi clipboard X11, dan notifikasi desktop |
+| **Screenshot & Clip** | `maim`, `xclip` | Official | Utilitas screen capture dan integrasi clipboard X11 |
+| **Notifikasi Desktop** | `dunst`, `libnotify` | Official | Notification daemon ringan untuk i3wm dan pengirim notifikasi (`notify-send`) |
 | **Runtime Wrapper** | `python` | Official | Interpreter untuk mengeksekusi `top-wrapper.py` di i3bar |
 
 ---
@@ -141,7 +143,7 @@ chmod +x install.sh
 8. **Aktivasi Layanan Systemd:** Mengaktifkan dan menyalakan `NetworkManager.service`, `bluetooth.service`, dan `tailscaled.service`.
 9. **Deploy Seluruh Dotfiles:** Menyalin seluruh file konfigurasi (`.xinitrc`, `.Xresources`, `.zshrc`, `.config/i3/*`, `.config/i3status/*`) ke direktori `$HOME` dengan mekanisme auto-backup jika file lama sudah ada.
 10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
-11. **Wallpaper Placeholder:** Membuat gambar background cadangan di `~/Pictures/wallpaper.jpg` dengan ImageMagick jika user belum menyiapkan gambar.
+11. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).
 12. **Konfigurasi Shell Default:** Mengubah default shell login user ke `/usr/bin/zsh`.
 
 ### Langkah 4: Masuk ke Desktop
