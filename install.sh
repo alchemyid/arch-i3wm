@@ -107,6 +107,12 @@ PKGS_UTILITIES=(
     redshift
 )
 
+PKGS_DEV_BROWSERS=(
+    nodejs
+    npm
+    firefox
+)
+
 # Gabungkan seluruh paket resmi
 ALL_OFFICIAL_PKGS=(
     "${PKGS_BASE[@]}"
@@ -115,6 +121,7 @@ ALL_OFFICIAL_PKGS=(
     "${PKGS_TERMINAL_SHELL[@]}"
     "${PKGS_HARDWARE_AUDIO_NET[@]}"
     "${PKGS_UTILITIES[@]}"
+    "${PKGS_DEV_BROWSERS[@]}"
 )
 
 # ------------------------------------------------------------------------------
@@ -153,6 +160,7 @@ log_step "Memasang dependensi dari AUR..."
 
 PKGS_AUR=(
     i3lock-color
+    google-chrome
 )
 
 for pkg in "${PKGS_AUR[@]}"; do

@@ -91,6 +91,9 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **Terminal & Font** | `xterm`, `ttf-jetbrains-mono-nerd` | Official | Terminal emulator & font Nerd Font vektor untuk teks dan ikon status bar |
 | **Shell & CLI** | `zsh`, `zsh-autosuggestions`, `zsh-syntax-highlighting` | Official | Interactive shell dengan auto-complete dan syntax highlighting |
 | **Editor & Git** | `neovim`, `git`, `openssh` | Official | Editor default (`vim` -> `nvim`), version control, dan remote terminal |
+| **Development** | `nodejs`, `npm` | Official | Runtime JavaScript & Node package manager |
+| **Web Browser** | `firefox` | Official | Web browser open-source default |
+| **Web Browser (AUR)** | `google-chrome` | **AUR** | Web browser Google Chrome Stable |
 | **Wallpaper & Desktop** | `feh`, `dex`, `picom` | Official | Background manager, autostart XDG, dan compositor pencegah screen tearing |
 | **Layar Kunci** | `xss-lock`, `scrot`, `imagemagick` | Official | Idle suspend listener, screen capture, dan efek pengabur blur gambar |
 | **Layar Kunci (AUR)** | `i3lock-color` | **AUR** | Versi i3lock khusus dengan indikator cincin jam & palet hex Gruvbox |
