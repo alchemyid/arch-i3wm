@@ -145,6 +145,7 @@ chmod +x install.sh
 10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
 11. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).
 12. **Konfigurasi Shell Default:** Mengubah default shell login user ke `/usr/bin/zsh`.
+13. **Clone Konfigurasi Neovim:** Otomatis meng-clone repositori konfigurasi Neovim pribadi Anda (`https://github.com/alchemyid/nvim.git`) langsung ke `~/.config/nvim`.
 
 ### Langkah 4: Masuk ke Desktop
 Setelah instalasi selesai:

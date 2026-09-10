@@ -372,6 +372,29 @@ else
 fi
 
 # ------------------------------------------------------------------------------
+# 10. Clone / Setup Konfigurasi Neovim (alchemyid/nvim)
+# ------------------------------------------------------------------------------
+log_step "Menyiapkan konfigurasi Neovim ($HOME/.config/nvim)..."
+
+NVIM_DIR="$HOME/.config/nvim"
+NVIM_REPO="https://github.com/alchemyid/nvim.git"
+
+if [[ -d "$NVIM_DIR/.git" ]]; then
+    log_info "Konfigurasi Neovim sudah ada di $NVIM_DIR. Menjalankan git pull..."
+    git -C "$NVIM_DIR" pull --ff-only 2>/dev/null || log_warn "Gagal git pull otomatis di $NVIM_DIR"
+elif [[ -d "$NVIM_DIR" ]]; then
+    log_warn "Direktori $NVIM_DIR sudah ada tetapi bukan repositori git. Membuat backup..."
+    mv "$NVIM_DIR" "${NVIM_DIR}.bak.$(date +%s)"
+    log_info "Meng-clone konfigurasi Neovim dari $NVIM_REPO..."
+    git clone "$NVIM_REPO" "$NVIM_DIR"
+    log_success "Konfigurasi Neovim berhasil di-clone ke $NVIM_DIR."
+else
+    log_info "Meng-clone konfigurasi Neovim dari $NVIM_REPO..."
+    git clone "$NVIM_REPO" "$NVIM_DIR"
+    log_success "Konfigurasi Neovim berhasil di-clone ke $NVIM_DIR."
+fi
+
+# ------------------------------------------------------------------------------
 # Selesai
 # ------------------------------------------------------------------------------
 echo -e "\n${C_GREEN}${C_BOLD}======================================================${C_RESET}"
