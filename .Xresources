@@ -1,6 +1,6 @@
 ! Font
 xterm*faceName: JetBrainsMono Nerd Font
-xterm*faceSize: 8.5
+xterm*faceSize: 9
 ! Color scheme - Gruvbox dark (enak buat mata, kontras baik untuk terminal lama)
 xterm*background: #282828
 xterm*foreground: #ebdbb2
