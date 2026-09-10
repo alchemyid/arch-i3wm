@@ -338,6 +338,37 @@ chmod +x "$HOME/.config/i3/toggle-tailscale.sh"
 chmod +x "$HOME/.config/i3status/top-wrapper.py"
 chmod +x "$HOME/.config/i3status/wrapper.sh"
 
+# Deteksi dan sesuaikan sensor temperatur CPU secara otomatis di mesin target
+log_info "Mendeteksi sensor temperatur CPU..."
+CPU_TEMP_DETECTED=""
+for t in x86_pkg_temp coretemp TCPU k10temp; do
+    for type_file in /sys/class/thermal/thermal_zone*/type; do
+        if [[ -f "$type_file" ]] && grep -qi "^$t" "$type_file" 2>/dev/null; then
+            dir=$(dirname "$type_file")
+            if [[ -f "$dir/temp" ]]; then
+                CPU_TEMP_DETECTED="$dir/temp"
+                break 2
+            fi
+        fi
+    done
+done
+if [[ -z "$CPU_TEMP_DETECTED" ]]; then
+    for h in /sys/class/hwmon/hwmon*; do
+        if [[ -f "$h/name" ]] && grep -qE "(coretemp|k10temp)" "$h/name" 2>/dev/null; then
+            for temp_input in "$h"/temp*_input; do
+                if [[ -f "$temp_input" ]]; then
+                    CPU_TEMP_DETECTED="$temp_input"
+                    break 2
+                fi
+            done
+        fi
+    done
+fi
+if [[ -n "$CPU_TEMP_DETECTED" ]]; then
+    log_success "Sensor CPU terdeteksi: $CPU_TEMP_DETECTED"
+    sed -i -E "s|path[[:space:]]*=.*|path          = \"$CPU_TEMP_DETECTED\"|" "$HOME/.config/i3status/bottom.conf" 2>/dev/null || true
+fi
+
 # Load Xresources jika di sesi X
 if [[ -n "$DISPLAY" ]]; then
     xrdb -merge "$HOME/.Xresources" 2>/dev/null || true

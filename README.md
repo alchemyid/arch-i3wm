@@ -143,9 +143,10 @@ chmod +x install.sh
 8. **Aktivasi Layanan Systemd:** Mengaktifkan dan menyalakan `NetworkManager.service`, `bluetooth.service`, dan `tailscaled.service`.
 9. **Deploy Seluruh Dotfiles:** Menyalin seluruh file konfigurasi (`.xinitrc`, `.Xresources`, `.zshrc`, `.config/i3/*`, `.config/i3status/*`) ke direktori `$HOME` dengan mekanisme auto-backup jika file lama sudah ada.
 10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
-11. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).
-12. **Konfigurasi Shell Default:** Mengubah default shell login user ke `/usr/bin/zsh`.
-13. **Clone Konfigurasi Neovim:** Otomatis meng-clone repositori konfigurasi Neovim pribadi Anda (`https://github.com/alchemyid/nvim.git`) langsung ke `~/.config/nvim`.
+11. **Deteksi Sensor Suhu CPU Dinamis:** Script otomatis memindai jenis prosesor (Intel `x86_pkg_temp`/`coretemp`, AMD `k10temp`, atau ACPI zone) untuk mendeteksi `thermal_zone` yang tepat dan mengonfigurasi `bottom.conf`. Selain itu, `wrapper.sh` juga melakukan deteksi dinamis setiap kali i3bar dijalankan.
+12. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).
+13. **Konfigurasi Shell Default:** Mengubah default shell login user ke `/usr/bin/zsh`.
+14. **Clone Konfigurasi Neovim:** Otomatis meng-clone repositori konfigurasi Neovim pribadi Anda (`https://github.com/alchemyid/nvim.git`) langsung ke `~/.config/nvim`.
 
 ### Langkah 4: Masuk ke Desktop
 Setelah instalasi selesai:
