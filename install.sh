@@ -342,13 +342,15 @@ fi
 # ------------------------------------------------------------------------------
 log_step "Memeriksa shell default user..."
 
-CURRENT_SHELL="$(basename "$SHELL")"
-if [[ "$CURRENT_SHELL" != "zsh" ]]; then
+USER_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+ZSH_PATH="$(which zsh 2>/dev/null || echo '/usr/bin/zsh')"
+
+if [[ "$USER_SHELL" != "$ZSH_PATH" ]]; then
     log_info "Mengubah shell default ke zsh untuk user $USER..."
-    ZSH_PATH="$(which zsh)"
-    chsh -s "$ZSH_PATH" "$USER" || log_warn "Gagal mengubah shell dengan chsh otomatis. Jalankan: chsh -s $(which zsh)"
+    sudo chsh -s "$ZSH_PATH" "$USER" || chsh -s "$ZSH_PATH" "$USER" || log_warn "Gagal mengubah shell otomatis. Jalankan manual: chsh -s $ZSH_PATH"
+    log_success "Shell default berhasil diubah ke: $ZSH_PATH"
 else
-    log_info "Shell default sudah menggunakan zsh."
+    log_info "Shell default user $USER sudah menggunakan zsh ($USER_SHELL)."
 fi
 
 # ------------------------------------------------------------------------------
