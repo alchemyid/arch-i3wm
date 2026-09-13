@@ -71,7 +71,13 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
   * Wrapper Script: [`.config/i3status/wrapper.sh`](file:///home/girirahayu/arch-i3wm/.config/i3status/wrapper.sh)
   * Menampilkan: **Status Bluetooth Dinamis** (` ON` warna hijau atau ` OFF` warna merah), Koneksi WiFi, Ethernet LAN, Beban CPU (%), dan Temperatur CPU (°C).
 
-### G. Konfigurasi Touchpad (Trackpad)
+### G. Desktop System Monitor (Conky HUD)
+* **Konfigurasi:** [`.config/conky/conky.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky.conf) & [`.config/conky/logo.png`](file:///home/girirahayu/arch-i3wm/.config/conky/logo.png)
+  * Menampilkan widget monitoring sistem transparan berstruktur diagram pohon (*hierarchical tree HUD*) di sisi kanan layar desktop.
+  * Menampilkan: Logo & nodename, Kernel & Arch, Uptime, Beban & frekuensi CPU core, 5 proses pemakan CPU teratas, Suhu CPU, Disk read/write I/O, Penggunaan RAM & 5 proses pemakan RAM teratas, Partisi disk (`/`, `/home`, `/tmp`, `swap`), Koneksi port TCP aktif, serta Kecepatan & grafik unduh/unggah jaringan Wi-Fi (`wlp2s0`).
+  * Dimuat otomatis pada saat startup i3wm melalui `exec --no-startup-id conky -c ~/.config/conky/conky.conf`.
+
+### H. Konfigurasi Touchpad (Trackpad)
 * **File Sistem:** `/etc/X11/xorg.conf.d/30-touchpad.conf`
   * Dikelola oleh driver `libinput` untuk touchpad laptop HP ProBook (`ELAN0733`).
   * **Tapping (Tap-to-click):** Sentuh ringan 1 jari untuk klik kiri, 2 jari untuk klik kanan, 3 jari untuk klik tengah.
@@ -87,9 +93,9 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | :--- | :--- | :--- | :--- |
 | **X11 / Display** | `xorg-server`, `xorg-xinit`, `xorg-xrdb`, `xorg-xset` | Official | Display server dasar, `startx`, parser `.Xresources`, pengatur screen timeout idle |
 | **Touchpad / Input** | `xf86-input-libinput`, `xorg-xinput` | Official | Driver trackpad libinput (Tap-to-click, gestures, natural scrolling) |
-| **Window Manager** | `i3-wm`, `i3status`, `dmenu` | Official | Tiling window manager, generator status bar, launcher menu aplikasi |
+| **Window Manager** | `i3-wm`, `i3status`, `conky`, `dmenu` | Official | Tiling window manager, generator status bar, conky desktop system monitor, launcher menu |
 | **Base / Core Tools** | `base-devel`, `git`, `curl`, `wget`, `psmisc` | Official | Paket esensial sistem, kompilasi software, dan utilitas proses (`killall`) |
-| **Typography & Fonts**| `ttf-jetbrains-mono-nerd`, `noto-fonts`, `noto-fonts-emoji`, `ttf-liberation` | Official | JetBrainsMono Nerd Font (ikon/status bar), fallback Unicode, emoji warna, & metrik standar |
+| **Typography & Fonts**| `ttf-jetbrains-mono-nerd`, `ttf-dejavu`, `noto-fonts`, `noto-fonts-emoji`, `ttf-liberation` | Official | JetBrainsMono Nerd Font (ikon/status bar), DejaVu fonts, fallback Unicode, & emoji |
 | **Terminal & Shell** | `xterm`, `zsh`, `zsh-autosuggestions`, `zsh-syntax-highlighting` | Official | Terminal emulator & interactive shell dengan rekomendasi perintah dan syntax highlight |
 | **Editor & Git** | `neovim`, `git`, `openssh` | Official | Editor default (`vim` -> `nvim`), version control, dan remote terminal |
 | **Programming & Dev** | `nodejs`, `npm`, `go`, `rust` | Official | Runtime Node.js & npm, compiler Go (Golang), serta toolchain Rust & Cargo |
@@ -141,7 +147,7 @@ chmod +x install.sh
 6. **Konfigurasi Touchpad Otomatis:** Membuat `/etc/X11/xorg.conf.d/30-touchpad.conf` sehingga Tap-to-Click dan Natural Scrolling langsung aktif.
 7. **Konfigurasi Bluetooth Standby:** Menyetel `AutoEnable=false` di `/etc/bluetooth/main.conf` agar Bluetooth tidak boros baterai saat boot.
 8. **Aktivasi Layanan Systemd:** Mengaktifkan dan menyalakan `NetworkManager.service`, `bluetooth.service`, dan `tailscaled.service`.
-9. **Deploy Seluruh Dotfiles:** Menyalin seluruh file konfigurasi (`.xinitrc`, `.Xresources`, `.zshrc`, `.config/i3/*`, `.config/i3status/*`) ke direktori `$HOME` dengan mekanisme auto-backup jika file lama sudah ada.
+9. **Deploy Seluruh Dotfiles:** Menyalin seluruh file konfigurasi (`.xinitrc`, `.Xresources`, `.zshrc`, `.config/i3/*`, `.config/i3status/*`, `.config/conky/*`) ke direktori `$HOME` dengan mekanisme auto-backup jika file lama sudah ada.
 10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
 11. **Deteksi Sensor Suhu CPU Dinamis:** Script otomatis memindai jenis prosesor (Intel `x86_pkg_temp`/`coretemp`, AMD `k10temp`, atau ACPI zone) untuk mendeteksi `thermal_zone` yang tepat dan mengonfigurasi `bottom.conf`. Selain itu, `wrapper.sh` juga melakukan deteksi dinamis setiap kali i3bar dijalankan.
 12. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).

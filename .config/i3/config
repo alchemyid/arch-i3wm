@@ -54,6 +54,9 @@ exec --no-startup-id ~/.config/i3/toggle-tailscale.sh down
 # Compositor untuk menghilangkan screen tearing & flicker (bikin mata rileks)
 exec --no-startup-id picom -b
 
+# Conky system monitor HUD (Desktop widget di sebelah kanan)
+exec --no-startup-id conky -c ~/.config/conky/conky.conf
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status

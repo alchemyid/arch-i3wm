@@ -70,11 +70,13 @@ PKGS_XORG=(
 PKGS_I3WM=(
     i3-wm
     i3status
+    conky
     dmenu
 )
 
 PKGS_FONTS=(
     ttf-jetbrains-mono-nerd
+    ttf-dejavu
     noto-fonts
     noto-fonts-emoji
     ttf-liberation
@@ -291,6 +293,7 @@ log_step "Menyinkronkan file konfigurasi ke \$HOME ($HOME)..."
 
 mkdir -p "$HOME/.config/i3"
 mkdir -p "$HOME/.config/i3status"
+mkdir -p "$HOME/.config/conky"
 mkdir -p "$HOME/Pictures"
 
 # Helper fungsi backup & copy/link
@@ -329,6 +332,16 @@ deploy_file "$SCRIPT_DIR/.config/i3status/top.conf" "$HOME/.config/i3status/top.
 deploy_file "$SCRIPT_DIR/.config/i3status/top-wrapper.py" "$HOME/.config/i3status/top-wrapper.py"
 deploy_file "$SCRIPT_DIR/.config/i3status/bottom.conf" "$HOME/.config/i3status/bottom.conf"
 deploy_file "$SCRIPT_DIR/.config/i3status/wrapper.sh" "$HOME/.config/i3status/wrapper.sh"
+
+# Deploy Conky Desktop HUD configs
+deploy_file "$SCRIPT_DIR/.config/conky/conky.conf" "$HOME/.config/conky/conky.conf"
+deploy_file "$SCRIPT_DIR/.config/conky/logo.png" "$HOME/.config/conky/logo.png"
+
+# Deteksi interface wireless lokal untuk conky.conf jika berbeda
+WIFI_IF_DETECTED=$(ip -o link show | awk -F': ' '{print $2}' | grep -E '^wl' | head -n 1)
+if [[ -n "$WIFI_IF_DETECTED" && "$WIFI_IF_DETECTED" != "wlp2s0" ]]; then
+    sed -i "s/wlp2s0/$WIFI_IF_DETECTED/g" "$HOME/.config/conky/conky.conf" 2>/dev/null || true
+fi
 
 # Pastikan script dapat dieksekusi
 chmod +x "$HOME/.config/i3/lock.sh"
