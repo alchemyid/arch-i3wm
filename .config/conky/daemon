@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Daemon script to run modules in daemon.d and format output for Conky Left
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DAEMON_DIR="$SCRIPT_DIR/daemon.d"
+
+if [[ ! -d "$DAEMON_DIR" ]]; then
+    exit 0
+fi
+
+while IFS= read -r -d '' shell; do
+    echo '${color}'
+    bash "${shell}"
+    echo ""
+done < <(find "$DAEMON_DIR" -maxdepth 1 -name "*.sh" -type f -print0 | sort -z)

@@ -71,11 +71,14 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
   * Wrapper Script: [`.config/i3status/wrapper.sh`](file:///home/girirahayu/arch-i3wm/.config/i3status/wrapper.sh)
   * Menampilkan: **Status Bluetooth Dinamis** (` ON` warna hijau atau ` OFF` warna merah), Koneksi WiFi, Ethernet LAN, Beban CPU (%), dan Temperatur CPU (°C).
 
-### G. Desktop System Monitor (Conky HUD)
-* **Konfigurasi:** [`.config/conky/conky.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky.conf) & [`.config/conky/logo.png`](file:///home/girirahayu/arch-i3wm/.config/conky/logo.png)
-  * Menampilkan widget monitoring sistem transparan berstruktur diagram pohon (*hierarchical tree HUD*) di sisi kanan layar desktop.
-  * Menampilkan: Logo & nodename, Kernel & Arch, Uptime, Beban & frekuensi CPU core, 5 proses pemakan CPU teratas, Suhu CPU, Disk read/write I/O, Penggunaan RAM & 5 proses pemakan RAM teratas, Partisi disk (`/`, `/home`, `/tmp`, `swap`), Koneksi port TCP aktif, serta Kecepatan & grafik unduh/unggah jaringan Wi-Fi (`wlp2s0`).
-  * Dimuat otomatis pada saat startup i3wm melalui `exec --no-startup-id conky -c ~/.config/conky/conky.conf`.
+### G. Desktop System Monitor (Dual Conky HUDs)
+* **Conky Right HUD (Monitor Sistem):**
+  * Konfigurasi: [`.config/conky/conky.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky.conf) & [`.config/conky/logo.png`](file:///home/girirahayu/arch-i3wm/.config/conky/logo.png)
+  * Menampilkan widget transparan berstruktur diagram pohon (*tree HUD*) di sisi kanan desktop: Logo, Uptime, Beban & frekuensi CPU core, 5 proses teratas CPU, Suhu CPU, Disk read/write I/O, Penggunaan RAM & 5 proses RAM teratas, Partisi disk (`/`, `/home`, `/tmp`, `swap`), Koneksi port TCP aktif, serta Kecepatan & grafik unduh/unggah Wi-Fi (`wlp2s0`).
+* **Conky Left HUD (Author & Cuaca Real-time):**
+  * Konfigurasi: [`.config/conky/conky-left.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky-left.conf), [`.config/conky/daemon`](file:///home/girirahayu/arch-i3wm/.config/conky/daemon), & modul [`.config/conky/daemon.d/`](file:///home/girirahayu/arch-i3wm/.config/conky/daemon.d/)
+  * Menampilkan ASCII banner kustom `girirahayu`, tag `[ @author girirahayu ]`, ramalan cuaca ASCII live (`10-weather.sh` via `wttr.in`), dan runner modul shell (`daemon.d`).
+* Kedua widget Conky dimuat otomatis pada saat startup i3wm melalui `exec --no-startup-id conky -c ~/.config/conky/conky-left.conf` dan `exec --no-startup-id conky -c ~/.config/conky/conky.conf`.
 
 ### H. Konfigurasi Touchpad (Trackpad)
 * **File Sistem:** `/etc/X11/xorg.conf.d/30-touchpad.conf`

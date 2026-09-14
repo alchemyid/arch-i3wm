@@ -293,7 +293,7 @@ log_step "Menyinkronkan file konfigurasi ke \$HOME ($HOME)..."
 
 mkdir -p "$HOME/.config/i3"
 mkdir -p "$HOME/.config/i3status"
-mkdir -p "$HOME/.config/conky"
+mkdir -p "$HOME/.config/conky/daemon.d"
 mkdir -p "$HOME/Pictures"
 
 # Helper fungsi backup & copy/link
@@ -333,9 +333,13 @@ deploy_file "$SCRIPT_DIR/.config/i3status/top-wrapper.py" "$HOME/.config/i3statu
 deploy_file "$SCRIPT_DIR/.config/i3status/bottom.conf" "$HOME/.config/i3status/bottom.conf"
 deploy_file "$SCRIPT_DIR/.config/i3status/wrapper.sh" "$HOME/.config/i3status/wrapper.sh"
 
-# Deploy Conky Desktop HUD configs
+# Deploy Conky Desktop HUD configs (Left & Right)
 deploy_file "$SCRIPT_DIR/.config/conky/conky.conf" "$HOME/.config/conky/conky.conf"
+deploy_file "$SCRIPT_DIR/.config/conky/conky-left.conf" "$HOME/.config/conky/conky-left.conf"
 deploy_file "$SCRIPT_DIR/.config/conky/logo.png" "$HOME/.config/conky/logo.png"
+deploy_file "$SCRIPT_DIR/.config/conky/daemon" "$HOME/.config/conky/daemon"
+deploy_file "$SCRIPT_DIR/.config/conky/daemon.d/10-weather.sh" "$HOME/.config/conky/daemon.d/10-weather.sh"
+deploy_file "$SCRIPT_DIR/.config/conky/daemon.d/20-example.sh" "$HOME/.config/conky/daemon.d/20-example.sh"
 
 # Deteksi interface wireless lokal untuk conky.conf jika berbeda
 WIFI_IF_DETECTED=$(ip -o link show | awk -F': ' '{print $2}' | grep -E '^wl' | head -n 1)
@@ -350,6 +354,11 @@ chmod +x "$HOME/.config/i3/toggle-redshift.sh"
 chmod +x "$HOME/.config/i3/toggle-tailscale.sh"
 chmod +x "$HOME/.config/i3status/top-wrapper.py"
 chmod +x "$HOME/.config/i3status/wrapper.sh"
+chmod +x "$HOME/.config/conky/daemon"
+chmod +x "$HOME/.config/conky/daemon.d/"*
+
+# Generate cache awal daemon Conky Left
+"$HOME/.config/conky/daemon" > "/tmp/.${USER}_i3_daemon" 2>&1 || true
 
 # Deteksi dan sesuaikan sensor temperatur CPU secara otomatis di mesin target
 log_info "Mendeteksi sensor temperatur CPU..."
