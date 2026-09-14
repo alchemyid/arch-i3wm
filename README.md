@@ -75,9 +75,9 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 * **Conky Right HUD (Monitor Sistem):**
   * Konfigurasi: [`.config/conky/conky.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky.conf) & [`.config/conky/logo.png`](file:///home/girirahayu/arch-i3wm/.config/conky/logo.png)
   * Menampilkan widget transparan berstruktur diagram pohon (*tree HUD*) di sisi kanan desktop: Logo, Uptime, Beban & frekuensi CPU core, 5 proses teratas CPU, Suhu CPU, Disk read/write I/O, Penggunaan RAM & 5 proses RAM teratas, Partisi disk (`/`, `/home`, `/tmp`, `swap`), Koneksi port TCP aktif, serta Kecepatan & grafik unduh/unggah Wi-Fi (`wlp2s0`).
-* **Conky Left HUD (Author & Cuaca Real-time):**
+* **Conky Left HUD (Author, Cuaca, & Spesifikasi Sistem):**
   * Konfigurasi: [`.config/conky/conky-left.conf`](file:///home/girirahayu/arch-i3wm/.config/conky/conky-left.conf), [`.config/conky/daemon`](file:///home/girirahayu/arch-i3wm/.config/conky/daemon), & modul [`.config/conky/daemon.d/`](file:///home/girirahayu/arch-i3wm/.config/conky/daemon.d/)
-  * Menampilkan ASCII banner kustom `girirahayu`, tag `[ @author girirahayu ]`, ramalan cuaca ASCII live (`10-weather.sh` via `wttr.in`), dan runner modul shell (`daemon.d`).
+  * Menampilkan ASCII banner kustom `girirahayu`, tag `[ @author girirahayu ]`, ramalan cuaca live (`10-weather.sh`), dan ringkasan spesifikasi sistem modern via `fastfetch` tanpa blok palet warna (`20-fastfetch.sh`).
 * Kedua widget Conky dimuat otomatis pada saat startup i3wm melalui `exec --no-startup-id conky -c ~/.config/conky/conky-left.conf` dan `exec --no-startup-id conky -c ~/.config/conky/conky.conf`.
 
 ### H. Konfigurasi Touchpad (Trackpad)
@@ -111,6 +111,7 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **Network & VPN** | `networkmanager`, `network-manager-applet`, `tailscale` | Official | Pengelola WiFi/LAN, ikon tray sistem, dan mesh VPN Tailscale |
 | **Hardware Control** | `bluez`, `bluez-utils`, `brightnessctl` | Official | Bluetooth daemon & CLI controller, pengatur kecerahan lampu layar laptop |
 | **Kenyamanan Mata** | `redshift` | Official | Pengatur temperatur warna / filter cahaya biru (5500K) |
+| **System Info** | `fastfetch` | Official | Tool system fetch modern yang cepat untuk modul widget Conky |
 | **Screenshot & Clip** | `maim`, `xclip` | Official | Utilitas screen capture dan integrasi clipboard X11 |
 | **Notifikasi Desktop** | `dunst`, `libnotify` | Official | Notification daemon ringan untuk i3wm dan pengirim notifikasi (`notify-send`) |
 | **Runtime Wrapper** | `python` | Official | Interpreter untuk mengeksekusi `top-wrapper.py` di i3bar |

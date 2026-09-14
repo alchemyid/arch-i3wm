@@ -116,6 +116,7 @@ PKGS_UTILITIES=(
     dunst
     picom
     redshift
+    fastfetch
 )
 
 PKGS_DEV_LANGUAGES=(
@@ -339,7 +340,7 @@ deploy_file "$SCRIPT_DIR/.config/conky/conky-left.conf" "$HOME/.config/conky/con
 deploy_file "$SCRIPT_DIR/.config/conky/logo.png" "$HOME/.config/conky/logo.png"
 deploy_file "$SCRIPT_DIR/.config/conky/daemon" "$HOME/.config/conky/daemon"
 deploy_file "$SCRIPT_DIR/.config/conky/daemon.d/10-weather.sh" "$HOME/.config/conky/daemon.d/10-weather.sh"
-deploy_file "$SCRIPT_DIR/.config/conky/daemon.d/20-example.sh" "$HOME/.config/conky/daemon.d/20-example.sh"
+deploy_file "$SCRIPT_DIR/.config/conky/daemon.d/20-fastfetch.sh" "$HOME/.config/conky/daemon.d/20-fastfetch.sh"
 
 # Deteksi interface wireless lokal untuk conky.conf jika berbeda
 WIFI_IF_DETECTED=$(ip -o link show | awk -F': ' '{print $2}' | grep -E '^wl' | head -n 1)
