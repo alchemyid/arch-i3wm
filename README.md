@@ -98,7 +98,7 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **Touchpad / Input** | `xf86-input-libinput`, `xorg-xinput` | Official | Driver trackpad libinput (Tap-to-click, gestures, natural scrolling) |
 | **Window Manager** | `i3-wm`, `i3status`, `conky`, `dmenu` | Official | Tiling window manager, generator status bar, conky desktop system monitor, launcher menu |
 | **Base / Core Tools** | `base-devel`, `git`, `curl`, `wget`, `psmisc` | Official | Paket esensial sistem, kompilasi software, dan utilitas proses (`killall`) |
-| **Typography & Fonts**| `ttf-jetbrains-mono-nerd`, `ttf-dejavu`, `noto-fonts`, `noto-fonts-emoji`, `ttf-liberation` | Official | JetBrainsMono Nerd Font (ikon/status bar), DejaVu fonts, fallback Unicode, & emoji |
+| **Typography & Fonts**| `ttf-jetbrains-mono-nerd`, `ttf-dejavu`, `noto-fonts`, `noto-fonts-cjk`, `noto-fonts-emoji`, `ttf-liberation` | Official | JetBrainsMono Nerd Font, Noto CJK (Korea & China/Mandarin), DejaVu, Unicode fallback, & emoji |
 | **Terminal & Shell** | `xterm`, `zsh`, `zsh-autosuggestions`, `zsh-syntax-highlighting` | Official | Terminal emulator & interactive shell dengan rekomendasi perintah dan syntax highlight |
 | **Editor & Git** | `neovim`, `git`, `openssh` | Official | Editor default (`vim` -> `nvim`), version control, dan remote terminal |
 | **Programming & Dev** | `nodejs`, `npm`, `go`, `rust` | Official | Runtime Node.js & npm, compiler Go (Golang), serta toolchain Rust & Cargo |

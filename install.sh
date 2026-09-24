@@ -78,6 +78,7 @@ PKGS_FONTS=(
     ttf-jetbrains-mono-nerd
     ttf-dejavu
     noto-fonts
+    noto-fonts-cjk
     noto-fonts-emoji
     ttf-liberation
 )
