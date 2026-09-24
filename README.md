@@ -65,7 +65,7 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 * **Top Bar (Bar Atas):**
   * Konfigurasi: [`.config/i3status/top.conf`](file:///home/girirahayu/arch-i3wm/.config/i3status/top.conf)
   * Wrapper Script: [`.config/i3status/top-wrapper.py`](file:///home/girirahayu/arch-i3wm/.config/i3status/top-wrapper.py)
-  * Menampilkan: Penggunaan RAM, Disk Root (`/`), Disk Data (`/home`), **Status Tailscale VPN Dinamis** (`󰖂 UP (IP)` warna hijau atau `󰖂 down` warna merah tanpa terpengaruh bug link-local IPv6 `fe80::...`), Jam/Kalender, dan Persentase Baterai.
+  * Menampilkan: Penggunaan RAM, Disk Root (`/`), Disk Data (`/home`), **Unified Multi-VPN Dinamis** (1 blok cerdas mendeteksi Tailscale, OpenFortiVPN `ppp*`, Wireguard/OpenVPN, misal `󰖂 TS: 100.x | FORTI: 10.x` warna hijau atau `󰖂 VPN down` warna merah), Jam/Kalender, dan Persentase Baterai.
 * **Bottom Bar (Bar Bawah):**
   * Konfigurasi: [`.config/i3status/bottom.conf`](file:///home/girirahayu/arch-i3wm/.config/i3status/bottom.conf)
   * Wrapper Script: [`.config/i3status/wrapper.sh`](file:///home/girirahayu/arch-i3wm/.config/i3status/wrapper.sh)
@@ -108,7 +108,7 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 | **Layar Kunci** | `xss-lock`, `scrot`, `imagemagick` | Official | Idle suspend listener, screen capture, dan efek pengabur blur gambar |
 | **Layar Kunci (AUR)** | `i3lock-color` | **AUR** | Versi i3lock khusus dengan indikator cincin jam & palet hex Gruvbox |
 | **Audio Modern** | `pipewire`, `pipewire-pulse`, `wireplumber` | Official | Audio server modern pengganti PulseAudio, kompatibel dengan `pactl` |
-| **Network & VPN** | `networkmanager`, `network-manager-applet`, `tailscale` | Official | Pengelola WiFi/LAN, ikon tray sistem, dan mesh VPN Tailscale |
+| **Network & VPN** | `networkmanager`, `network-manager-applet`, `tailscale`, `openfortivpn` | Official | Pengelola WiFi/LAN, ikon tray sistem, Tailscale, dan OpenFortiVPN |
 | **Hardware Control** | `bluez`, `bluez-utils`, `brightnessctl` | Official | Bluetooth daemon & CLI controller, pengatur kecerahan lampu layar laptop |
 | **Kenyamanan Mata** | `redshift` | Official | Pengatur temperatur warna / filter cahaya biru (5500K) |
 | **System Info** | `fastfetch` | Official | Tool system fetch modern yang cepat untuk modul widget Conky |
@@ -152,7 +152,7 @@ chmod +x install.sh
 7. **Konfigurasi Bluetooth Standby:** Menyetel `AutoEnable=false` di `/etc/bluetooth/main.conf` agar Bluetooth tidak boros baterai saat boot.
 8. **Aktivasi Layanan Systemd:** Mengaktifkan dan menyalakan `NetworkManager.service`, `bluetooth.service`, dan `tailscaled.service`.
 9. **Deploy Seluruh Dotfiles:** Menyalin seluruh file konfigurasi (`.xinitrc`, `.Xresources`, `.zshrc`, `.config/i3/*`, `.config/i3status/*`, `.config/conky/*`) ke direktori `$HOME` dengan mekanisme auto-backup jika file lama sudah ada.
-10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
+10. **Izin Eksekusi Skrip:** Otomatis memberikan `chmod +x` pada seluruh skrip helper (`lock.sh`, `toggle-bluetooth.sh`, `toggle-tailscale.sh`, `toggle-openfortivpn.sh`, `toggle-redshift.sh`, `top-wrapper.py`, `wrapper.sh`).
 11. **Deteksi Sensor Suhu CPU Dinamis:** Script otomatis memindai jenis prosesor (Intel `x86_pkg_temp`/`coretemp`, AMD `k10temp`, atau ACPI zone) untuk mendeteksi `thermal_zone` yang tepat dan mengonfigurasi `bottom.conf`. Selain itu, `wrapper.sh` juga melakukan deteksi dinamis setiap kali i3bar dijalankan.
 12. **Deploy Wallpaper Default:** Otomatis menyalin `wallpaper.jpg` bawaan repositori ke `~/Pictures/wallpaper.jpg` (lengkap dengan pembuatan direktori `~/Pictures`).
 13. **Konfigurasi Shell Default:** Mengubah default shell login user ke `/usr/bin/zsh`.

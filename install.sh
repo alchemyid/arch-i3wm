@@ -103,6 +103,7 @@ PKGS_HARDWARE_AUDIO_NET=(
     bluez-utils
     brightnessctl
     tailscale
+    openfortivpn
 )
 
 PKGS_UTILITIES=(
@@ -328,6 +329,7 @@ deploy_file "$SCRIPT_DIR/.config/i3/lock.sh" "$HOME/.config/i3/lock.sh"
 deploy_file "$SCRIPT_DIR/.config/i3/toggle-bluetooth.sh" "$HOME/.config/i3/toggle-bluetooth.sh"
 deploy_file "$SCRIPT_DIR/.config/i3/toggle-redshift.sh" "$HOME/.config/i3/toggle-redshift.sh"
 deploy_file "$SCRIPT_DIR/.config/i3/toggle-tailscale.sh" "$HOME/.config/i3/toggle-tailscale.sh"
+deploy_file "$SCRIPT_DIR/.config/i3/toggle-openfortivpn.sh" "$HOME/.config/i3/toggle-openfortivpn.sh"
 
 # Deploy i3status configs
 deploy_file "$SCRIPT_DIR/.config/i3status/top.conf" "$HOME/.config/i3status/top.conf"
@@ -354,6 +356,7 @@ chmod +x "$HOME/.config/i3/lock.sh"
 chmod +x "$HOME/.config/i3/toggle-bluetooth.sh"
 chmod +x "$HOME/.config/i3/toggle-redshift.sh"
 chmod +x "$HOME/.config/i3/toggle-tailscale.sh"
+chmod +x "$HOME/.config/i3/toggle-openfortivpn.sh"
 chmod +x "$HOME/.config/i3status/top-wrapper.py"
 chmod +x "$HOME/.config/i3status/wrapper.sh"
 chmod +x "$HOME/.config/conky/daemon"
