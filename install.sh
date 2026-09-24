@@ -150,7 +150,7 @@ ALL_OFFICIAL_PKGS=(
 # ------------------------------------------------------------------------------
 log_step "Memperbarui database pacman dan menginstal paket resmi..."
 
-sudo pacman -Sy --needed --noconfirm "${ALL_OFFICIAL_PKGS[@]}"
+sudo pacman -Syu --needed --noconfirm "${ALL_OFFICIAL_PKGS[@]}"
 log_success "Semua paket resmi berhasil dipasang!"
 
 # ------------------------------------------------------------------------------
