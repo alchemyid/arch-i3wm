@@ -57,6 +57,9 @@ Berikut adalah pembedahan teknis seluruh komponen konfigurasi yang ada di dalam 
 * **File:** [`.config/i3/toggle-tailscale.sh`](file:///home/girirahayu/arch-i3wm/.config/i3/toggle-tailscale.sh)
   * **Shortcut:** **`Mod + t`**.
   * Menghubungkan atau memutuskan VPN Tailscale ke homelab secara instan tanpa dialog password sudo, serta mengirim sinyal pembaruan status ke bar atas.
+* **File:** [`.config/i3/toggle-openfortivpn.sh`](file:///home/girirahayu/arch-i3wm/.config/i3/toggle-openfortivpn.sh)
+  * **Shortcut:** **`Mod + Shift + t`**.
+  * Menghubungkan atau memutuskan OpenFortiVPN. Mendukung koneksi background hening jika NOPASSWD diatur atau otomatis memunculkan jendela terminal interaktif jika dibutuhkan verifikasi password / FortiToken OTP.
 * **File:** [`.config/i3/toggle-redshift.sh`](file:///home/girirahayu/arch-i3wm/.config/i3/toggle-redshift.sh)
   * **Shortcut:** **`Mod + n`**.
   * Mengaktifkan filter cahaya biru / mode malam **5500K** via `redshift` untuk meredakan mata lelah dan pusing. Tekan kembali untuk mengembalikan ke temperatur normal (6500K).

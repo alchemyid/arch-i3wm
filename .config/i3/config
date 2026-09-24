@@ -47,9 +47,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 exec --no-startup-id nm-applet
 
-# Default nonaktif saat startup: Bluetooth & Tailscale VPN (aktifkan saat butuh via $mod+b dan $mod+t)
+# Default nonaktif saat startup: Bluetooth, Tailscale & OpenFortiVPN
 exec --no-startup-id bluetoothctl power off
 exec --no-startup-id ~/.config/i3/toggle-tailscale.sh down
+exec --no-startup-id ~/.config/i3/toggle-openfortivpn.sh down
 
 # Compositor untuk menghilangkan screen tearing & flicker (bikin mata rileks)
 exec --no-startup-id picom -b
@@ -67,6 +68,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Toggle Tailscale VPN ke Home Lab
 bindsym $mod+t exec --no-startup-id ~/.config/i3/toggle-tailscale.sh
+
+# Toggle OpenFortiVPN
+bindsym $mod+Shift+t exec --no-startup-id ~/.config/i3/toggle-openfortivpn.sh
 
 # Toggle Night Light / Dim Mode (5500K) via redshift
 bindsym $mod+n exec --no-startup-id ~/.config/i3/toggle-redshift.sh
