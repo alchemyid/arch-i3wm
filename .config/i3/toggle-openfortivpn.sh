@@ -18,7 +18,7 @@ do_down() {
     sudo -n systemctl stop openfortivpn@config 2>/dev/null || true
 
     # 3. Coba pkill proses openfortivpn
-    sudo -n pkill -SIGINT openfortivpn 2>/dev/null || pkill -SIGINT openfortivpn 2>/dev/null || true
+    sudo -n pkill -SIGINT openfortivpn 2>/dev/null || sudo -n pkill openfortivpn 2>/dev/null || pkill -SIGINT openfortivpn 2>/dev/null || true
 
     killall -SIGUSR1 i3status 2>/dev/null || true
     command -v notify-send >/dev/null && notify-send -u normal -i network-vpn-disconnected "OpenFortiVPN" "VPN Disconnected" 2>/dev/null || true
@@ -55,15 +55,15 @@ do_up() {
 
     command -v notify-send >/dev/null && notify-send -u normal -i network-vpn "OpenFortiVPN" "Menghubungkan ke VPN..." 2>/dev/null || true
 
-    # Cek apakah bisa sudo tanpa password (NOPASSWD)
-    if sudo -n true 2>/dev/null; then
+    # Cek apakah bisa sudo openfortivpn tanpa password (NOPASSWD)
+    if sudo -n openfortivpn --help >/dev/null 2>&1 || sudo -n true 2>/dev/null; then
         if [ -f /etc/openfortivpn/config.conf ]; then
-            sudo systemctl start openfortivpn@config
+            sudo -n systemctl start openfortivpn@config
         else
-            sudo openfortivpn -c "$CONFIG_FILE" >/dev/null 2>&1 &
+            sudo -n openfortivpn -c "$CONFIG_FILE" >/dev/null 2>&1 &
         fi
     else
-        # Jika butuh password sudo atau input OTP / FortiToken, buka terminal interaktif
+        # Jika belum ada sudoers NOPASSWD atau butuh input OTP FortiToken, buka terminal interaktif
         xterm -geometry 80x20 -title "OpenFortiVPN Connect" -e "sudo openfortivpn -c '$CONFIG_FILE'" &
     fi
 

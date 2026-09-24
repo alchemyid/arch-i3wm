@@ -150,7 +150,8 @@ chmod +x install.sh
 4. **Pemasangan Paket AUR:** Menginstal `i3lock-color` untuk kebutuhan `lock.sh`.
 5. **Konfigurasi Hak Akses & Sudoers:**
    * Menambahkan user ke grup `video` dan `input` (agar `brightnessctl` dapat mengatur kecerahan tanpa `sudo`).
-   * Mengatur `sudo tailscale set --operator=$USER` dan membuat file `/etc/sudoers.d/10-tailscale` dengan `NOPASSWD` agar toggle VPN bebas password.
+   * Mengatur `sudo tailscale set --operator=$USER` dan membuat file `/etc/sudoers.d/10-tailscale` dengan `NOPASSWD` agar toggle Tailscale VPN bebas password.
+   * Membuat file `/etc/sudoers.d/20-openfortivpn` dengan `NOPASSWD` untuk `openfortivpn`, `pkill`, dan `systemctl` agar toggle OpenFortiVPN (`$mod+Shift+t`) bebas password.
 6. **Konfigurasi Touchpad Otomatis:** Membuat `/etc/X11/xorg.conf.d/30-touchpad.conf` sehingga Tap-to-Click dan Natural Scrolling langsung aktif.
 7. **Konfigurasi Bluetooth Standby:** Menyetel `AutoEnable=false` di `/etc/bluetooth/main.conf` agar Bluetooth tidak boros baterai saat boot.
 8. **Aktivasi Layanan Systemd:** Mengaktifkan dan menyalakan `NetworkManager.service`, `bluetooth.service`, dan `tailscaled.service`.

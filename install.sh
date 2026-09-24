@@ -244,7 +244,7 @@ fi
 
 # Berikan izin NOPASSWD untuk openfortivpn agar shortcut i3 tidak meminta password jika tanpa OTP
 log_info "Menambahkan izin NOPASSWD openfortivpn ke /etc/sudoers.d/20-openfortivpn..."
-sudo bash -c 'echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/openfortivpn, /usr/bin/pkill -SIGINT openfortivpn, /usr/bin/systemctl start openfortivpn@*, /usr/bin/systemctl stop openfortivpn@*" > /etc/sudoers.d/20-openfortivpn'
+sudo bash -c 'echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/openfortivpn, /usr/bin/pkill, /usr/bin/systemctl start openfortivpn@*, /usr/bin/systemctl stop openfortivpn@*" > /etc/sudoers.d/20-openfortivpn'
 sudo chmod 440 /etc/sudoers.d/20-openfortivpn
 
 # Berikan izin ke grup video & input untuk kontrol kecerahan layar
